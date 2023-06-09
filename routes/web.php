@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DiceController;
+use App\Http\Controllers\WhatisthisController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,4 +22,9 @@ Route::get('/', function () {
 Route::prefix('dice')->group(function () {
     Route::get('/agreement', [DiceController::class, 'agreement']);
     Route::get('/privacy', [DiceController::class, 'agreement']);
+});
+
+Route::prefix('what-is-this')->group(function () {
+    Route::get('/agreement', [WhatisthisController::class, 'agreement']);
+    Route::get('/privacy', [WhatisthisController::class, 'agreement']);
 });
