@@ -23,7 +23,7 @@ functions:
     # This function runs the Laravel website/API
     web:
         handler: public/index.php
-        runtime: php-82-fpm
+        runtime: php-83-fpm
         architecture: arm64
         timeout: 28 # in seconds (API Gateway has a timeout of 29 seconds)
         events:
@@ -32,13 +32,14 @@ functions:
     # This function lets us run artisan commands in Lambda
     artisan:
         handler: artisan
-        runtime: php-82-console
+        runtime: php-83-console
         timeout: 720 # in seconds
         # Uncomment to also run the scheduler every minute
-        #events:
-        #    - schedule:
-        #          rate: rate(1 minute)
-        #          input: '"schedule:run"'
+        events:
+          - schedule:
+              rate: rate(1 minute)
+              input: '"schedule:run"'
+
 
 plugins:
     # We need to include the Bref plugin
