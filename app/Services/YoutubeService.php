@@ -19,8 +19,8 @@ class YoutubeService
     public function getTrendList()
     {
         $client = new Client();
-        $client->setApplicationName("youtube-trend-410111");
-        $client->setDeveloperKey("AIzaSyCBwx-U_csEy11RQV5g4b8EXIdNhryvbRk");
+        $client->setApplicationName(config('services.youtube-trend.project'));
+        $client->setDeveloperKey(config('services.youtube-trend.key'));
 
         $youtube = new YouTube($client);
 
