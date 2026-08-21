@@ -5,7 +5,6 @@ use App\Http\Controllers\BukaeController;
 use App\Http\Controllers\CuedropController;
 use App\Http\Controllers\DiceController;
 use App\Http\Controllers\HanalController;
-use App\Http\Controllers\RunningscheduleController;
 use App\Http\Controllers\SeasonalController;
 use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\StreakflowController;
@@ -56,11 +55,6 @@ Route::prefix('what-is-this')->group(function () {
 Route::prefix('youtube')->group(function () {
     Route::get('/agreement', [YoutubeController::class, 'agreement']);
     Route::get('/privacy', [YoutubeController::class, 'agreement']);
-});
-
-Route::prefix('running-schedule')->group(function () {
-    Route::get('/agreement', [RunningscheduleController::class, 'agreement']);
-    Route::get('/privacy', [RunningscheduleController::class, 'agreement']);
 });
 
 Route::prefix('cuedrop')->group(function () {
