@@ -35,4 +35,11 @@ return [
         'project' => env('GOOGLE_YOUTUBE_PROJECT'),
         'key' => env('GOOGLE_YOUTUBE_KEY'),
     ],
+
+    // 한알 라이브 생성 (Gemini). config 경유 = config:cache 안전.
+    'hanal' => [
+        'gemini_key' => env('GEMINI_API_KEY', ''),
+        'gen_model' => env('HANAL_GEMINI_GEN_MODEL', 'gemini-3.5-flash'),
+        'light_model' => env('HANAL_GEMINI_LIGHT_MODEL', 'gemini-3.1-flash-lite'),
+    ],
 ];

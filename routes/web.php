@@ -1,6 +1,13 @@
 <?php
 
+use App\Http\Controllers\BreathflowController;
+use App\Http\Controllers\BukaeController;
+use App\Http\Controllers\CuedropController;
 use App\Http\Controllers\DiceController;
+use App\Http\Controllers\HanalController;
+use App\Http\Controllers\RunningscheduleController;
+use App\Http\Controllers\SeasonalController;
+use App\Http\Controllers\StreakflowController;
 use App\Http\Controllers\WhatisthisController;
 use App\Http\Controllers\YoutubeController;
 use Illuminate\Support\Facades\Route;
@@ -20,6 +27,16 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/robots.txt', function () {
+    return response(file_get_contents(public_path('robots.txt')), 200)
+        ->header('Content-Type', 'text/plain');
+});
+
+Route::get('/app-ads.txt', function () {
+    return response(file_get_contents(public_path('app-ads.txt')), 200)
+        ->header('Content-Type', 'text/plain');
+});
+
 Route::prefix('dice')->group(function () {
     Route::get('/agreement', [DiceController::class, 'agreement']);
     Route::get('/privacy', [DiceController::class, 'agreement']);
@@ -33,4 +50,56 @@ Route::prefix('what-is-this')->group(function () {
 Route::prefix('youtube')->group(function () {
     Route::get('/agreement', [YoutubeController::class, 'agreement']);
     Route::get('/privacy', [YoutubeController::class, 'agreement']);
+});
+
+Route::prefix('running-schedule')->group(function () {
+    Route::get('/agreement', [RunningscheduleController::class, 'agreement']);
+    Route::get('/privacy', [RunningscheduleController::class, 'agreement']);
+});
+
+Route::prefix('cuedrop')->group(function () {
+    Route::get('/agreement', [CuedropController::class, 'agreement']);
+    Route::get('/privacy', [CuedropController::class, 'agreement']);
+});
+
+Route::prefix('bukae')->group(function () {
+    Route::get('/agreement', [BukaeController::class, 'agreement']);
+    Route::get('/privacy', [BukaeController::class, 'agreement']);
+});
+
+Route::prefix('hanal')->group(function () {
+    Route::get('/agreement', [HanalController::class, 'agreement']);
+    Route::get('/privacy', [HanalController::class, 'agreement']);
+});
+
+Route::prefix('streakflow')->group(function () {
+    Route::get('/', [StreakflowController::class, 'home'])->name('streakflow.home');
+    Route::get('/sitemap.xml', [StreakflowController::class, 'sitemap'])->name('streakflow.sitemap');
+    Route::get('/best-free-habit-tracker', [StreakflowController::class, 'guide'])->name('streakflow.guide');
+});
+
+Route::prefix('seasonal')->group(function () {
+    Route::get('/', [SeasonalController::class, 'home'])->name('seasonal.home');
+    Route::get('/sitemap.xml', [SeasonalController::class, 'sitemap'])->name('seasonal.sitemap');
+    // /seasonal/food/{slug} sits under its own segment so a food slug can never
+    // collide with a month slug on the /seasonal/{month} route below.
+    Route::get('/food/{slug}', [SeasonalController::class, 'food'])
+        ->where('slug', '[a-z0-9-]+')->name('seasonal.food');
+    Route::get('/{month}', [SeasonalController::class, 'month'])
+        ->where('month', '[a-z]+')->name('seasonal.month');
+});
+
+Route::prefix('breathflow')->group(function () {
+    Route::get('/', [BreathflowController::class, 'home'])->name('breathflow.home');
+    Route::get('/sitemap.xml', [BreathflowController::class, 'sitemap'])->name('breathflow.sitemap');
+    Route::get('/best-free-breathing-app', [BreathflowController::class, 'guide'])->name('breathflow.guide');
+    Route::get('/how-to-stop-a-panic-attack', [BreathflowController::class, 'article'])
+        ->defaults('page', 'how-to-stop-a-panic-attack')->name('breathflow.article.panic');
+    Route::get('/cant-sleep-anxiety', [BreathflowController::class, 'article'])
+        ->defaults('page', 'cant-sleep-anxiety')->name('breathflow.article.sleep');
+    Route::get('/breathing-exercises-for-anxiety', [BreathflowController::class, 'article'])
+        ->defaults('page', 'breathing-exercises-for-anxiety')->name('breathflow.article.anxiety');
+    Route::get('/{slug}', [BreathflowController::class, 'show'])
+        ->where('slug', '[a-z0-9-]+')
+        ->name('breathflow.show');
 });
