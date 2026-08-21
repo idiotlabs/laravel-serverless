@@ -1,6 +1,6 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://idiotlabs.kr/breathflow/sitemap.xml
-Sitemap: https://idiotlabs.kr/seasonal/sitemap.xml
-Sitemap: https://idiotlabs.kr/hanal/sitemap.xml
+# sitemap index 하나만 선언한다. 자식(앱별 sitemap)은 index 가 라우터에서 자동 수집하므로
+# 앱을 추가해도 이 파일과 GSC 제출을 다시 손댈 필요가 없다. — 2026-08-21
+Sitemap: https://idiotlabs.kr/sitemap.xml

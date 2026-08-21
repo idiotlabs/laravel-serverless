@@ -7,6 +7,7 @@ use App\Http\Controllers\DiceController;
 use App\Http\Controllers\HanalController;
 use App\Http\Controllers\RunningscheduleController;
 use App\Http\Controllers\SeasonalController;
+use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\StreakflowController;
 use App\Http\Controllers\WhatisthisController;
 use App\Http\Controllers\YoutubeController;
@@ -26,6 +27,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+// 도메인 전체 sitemap index. 자식(`*.sitemap` 라우트)은 자동 수집되므로 앱을 추가해도
+// 여기와 robots.txt 는 손댈 필요가 없고, GSC 재제출도 필요 없다. ⛔ 앱별 sitemap 라우트는
+// **반드시 `->name('<앱>.sitemap')` 관례를 지킬 것** — 이름이 다르면 조용히 빠진다.
+Route::get('/sitemap.xml', [SitemapController::class, 'index'])->name('sitemap.index');
 
 Route::get('/robots.txt', function () {
     return response(file_get_contents(public_path('robots.txt')), 200)
