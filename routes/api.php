@@ -18,11 +18,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('agiuija/restaurants', [\App\Http\Controllers\Api\AgiuijaController::class, 'index']);
-Route::post('agiuija/restaurants', [\App\Http\Controllers\Api\AgiuijaController::class, 'store']);
-Route::delete('agiuija/restaurants/{id}', [\App\Http\Controllers\Api\AgiuijaController::class, 'destroy']);
-Route::patch('agiuija/restaurants/{id}', [\App\Http\Controllers\Api\AgiuijaController::class, 'update']);
-
 Route::post('youtube/trend/user', [\App\Http\Controllers\Api\YoutubeController::class, 'user']);
 Route::post('youtube/trend', [\App\Http\Controllers\Api\YoutubeController::class, 'trend']);
 Route::post('youtube/trend/id', [\App\Http\Controllers\Api\YoutubeController::class, 'trendId']);
