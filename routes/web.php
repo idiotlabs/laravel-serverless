@@ -68,6 +68,13 @@ Route::prefix('bukae')->group(function () {
 });
 
 Route::prefix('hanal')->group(function () {
+    Route::get('/', [HanalController::class, 'home'])->name('hanal.home');
+    Route::get('/sitemap.xml', [HanalController::class, 'sitemap'])->name('hanal.sitemap');
+    // 경로는 개념이 아니라 **산출물 종류**로 나눈다(D038) — 앱 컨셉은 가설이고 피봇될 수
+    // 있는데, URL 에 개념을 박으면 피봇할 때 색인 자산을 잃는다. 로마자 고정(공유 링크가
+    // 퍼센트 인코딩으로 깨지지 않게). `{date}` 는 정규식으로 좁혀 임의 문자열 유입 차단.
+    Route::get('/verse/{date}', [HanalController::class, 'verse'])
+        ->where('date', '\d{4}-\d{2}-\d{2}')->name('hanal.verse');
     Route::get('/agreement', [HanalController::class, 'agreement']);
     Route::get('/privacy', [HanalController::class, 'agreement']);
 });

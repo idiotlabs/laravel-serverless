@@ -1,2 +1,6 @@
 User-agent: *
 Disallow:
+
+Sitemap: https://idiotlabs.kr/breathflow/sitemap.xml
+Sitemap: https://idiotlabs.kr/seasonal/sitemap.xml
+Sitemap: https://idiotlabs.kr/hanal/sitemap.xml
