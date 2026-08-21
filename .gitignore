@@ -20,3 +20,8 @@ yarn-error.log
 
 # 배포 번들 — .env 가 통째로 들어간다 (2026-08-21: 공개 레포에 유출 경로였음)
 /.serverless
+
+# IDE 자동 생성물 (커밋 대상 아님) — 2026-08-21
+_ide_helper.php
+_ide_helper_models.php
+.phpstorm.meta.php
