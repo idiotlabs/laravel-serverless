@@ -17,3 +17,6 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+
+# 배포 번들 — .env 가 통째로 들어간다 (2026-08-21: 공개 레포에 유출 경로였음)
+/.serverless
